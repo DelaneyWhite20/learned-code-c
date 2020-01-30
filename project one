@@ -1,0 +1,69 @@
+using System;
+
+namespace ChFiveProOne
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int pH;
+            string phLevel;
+
+            DisplayInstructions();
+            pH = GetInput();
+            phLevel = InputLevel(pH);
+            Console.Clear();
+            PrintResults(phLevel, pH);
+            
+
+            Console.WriteLine("Enter the pH level when commanded to.");
+            Console.WriteLine("Its level ID and number will be display.");
+        }
+
+        public static void DisplayInstructions()
+        {
+            Console.WriteLine("Welcome to the pH Level Calculator.");
+            Console.Write("\nThis program will determine what the pH level is (Alkaline, neutral, or acidic.)");
+            Console.Write("\nIf the pH level is low, the level will be acidic.");
+            Console.Write("\nIf the pH level is high, the level will be alkaline.");
+            Console.Write("\nIf the pH level is normal, the level will be neutral.");
+            Console.ReadKey();
+        }
+        public static int GetInput()
+        {
+            int pH;
+            Console.WriteLine("\nEnter the pH Level: ");
+            if (int.TryParse(Console.ReadLine(), out pH) == false)
+            {
+                Console.WriteLine("Invalid data entry");
+            }
+            return pH;
+        }
+        public static string InputLevel(int pH)
+        {
+            string phLev;
+
+            if (pH > 14)
+                phLev = "Invalid Entry, Too Large";
+            else
+                if (pH < 0)
+                phLev = "Invalid Entry, Too Small";
+                else
+                    if (pH < 7)
+                phLev = "Acidic";
+                    else
+                        if (pH == 7)
+                        phLev = "Neutral";
+                        else
+                    phLev = "Akaline";
+            return phLev;
+        }
+        public static void PrintResults(string phLevel, int ph)
+        {
+            Console.WriteLine("The results will now be displayed: ");
+            Console.WriteLine("\n\npH Level entered: " + ph);
+            Console.WriteLine("\n\npH Level is: " + phLevel);
+            Console.ReadKey();
+        }
+    }
+}
